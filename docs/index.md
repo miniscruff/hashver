@@ -27,7 +27,7 @@ HashVer format consists of 3 or 4 values separated by a period.
 1. [Optional] Zero padded day (`0D`)
 1. 6-10 characters of the current source controls commits hash
 
-> Warning
+> Warning:
     This does make the assumption you are using a source control that uses
     a hash to refer to the current commit or revision.
     Git for example does, Subversion does not.
@@ -52,12 +52,12 @@ good use cases.
 1. Do you deploy to production after most commits?
 1. Are your changelog updates mostly a single change?
 1. Do you have an automated process to deploy?
-    1. Full CI/CD recommended
+    * Full CI/CD recommended
 1. Do you have safety checks in place for bad changes?
-    1. High code coverage
-    1. Health checks
-    1. Monitoring
-    1. Alerting
+    * High code coverage
+    * Health checks
+    * Monitoring
+    * Alerting
 1. Can you rollback easily?
 1. Do your users always use the latest version?
 
@@ -75,13 +75,13 @@ To name a few:
 
 1. Does backwards compatability matter to you?
 1. Does the user need to install or update manually?
-    1. Mobile apps probably will not work
-    1. PWA's will probably work
+    * Mobile apps probably will not work
+    * PWA's will probably work
 1. Do you release infrequently?
-    1. Long gaps in releases make hash versioning irrelevant use calver or semver
+    * Long gaps in releases make hash versioning irrelevant use calver or semver
 1. Do you support more than one release at a time?
 1. Do you have a suite of external checks you must go through to release?
-    1. This just slows you down at which point you will need to batch releases anyway
+    * This just slows you down at which point you will need to batch releases anyway
 1. Is your project used as a dependency to other projects?
 1. Do you have to manually deploy?
 1. Do you have to manually test?
