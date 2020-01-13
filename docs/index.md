@@ -13,8 +13,7 @@ Some like to add a little extra with a cool name like Android or Ubuntu.
 The problem is that these formats assume a rate of releases to be rather slow.
 That is, maybe once a month or twice a year, what if we release 2-10 times a day?
 
-!!! note
-
+> Note:
     Most, if not all, of the projects listed above do have some sort of nightly
     or early access build that is published much much more frequently.
     But for comparing we are only concerned with those that reach production
@@ -28,8 +27,7 @@ HashVer format consists of 3 or 4 values separated by a period.
 1. [Optional] Zero padded day (`0D`)
 1. 6-10 characters of the current source controls commits hash
 
-!!! warning
-
+> Warning
     This does make the assumption you are using a source control that uses
     a hash to refer to the current commit or revision.
     Git for example does, Subversion does not.
