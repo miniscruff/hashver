@@ -22,10 +22,19 @@ That is, maybe once a month or twice a year, what if we release 2-10 times a day
 ## Scheme
 HashVer format consists of 3 or 4 values separated by a period.
 
-1. Full year (`YYYY`)
-1. Zero padded month  (`0M`)
-1. [Optional] Zero padded day (`0D`)
+1. Full year (`printf("%Y")`)
+1. Zero padded month  (`printf("%m")`)
+1. [Optional] Zero padded day (`printf(""%d)`)
 1. 6-10 characters of the current source controls commits hash
+    1. This can be done using rev-parse and cut
+    1. `git rev-parse HEAD | cut -c-8`
+
+> A simple bash script to print a version is:
+```bash
+printf '%(%Y-%m-)T'; git rev-parse HEAD | cut -c-8
+```
+Note the 8 at the end is adjustable.
+To include the day use `(%Y-%m-%d-)` inside the parenthesis.
 
 > Warning:
     This does make the assumption you are using a source control that uses
