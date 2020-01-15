@@ -29,10 +29,11 @@ HashVer format consists of 3 or 4 values separated by a period.
     1. This can be done using rev-parse and cut
     1. `git rev-parse HEAD | cut -c-8`
 
-> A simple bash script to print a version is:
+A simple bash script to print a version is:
 ```bash
 printf '%(%Y-%m-)T'; git rev-parse HEAD | cut -c-8
 ```
+
 Note the 8 at the end is adjustable.
 To include the day use `(%Y-%m-%d-)` inside the parenthesis.
 
