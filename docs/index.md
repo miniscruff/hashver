@@ -96,27 +96,30 @@ More to come...
 As part of your deployment pipeline when using hash versioning, here are some related practices.
 These are not directly part of hash version but are related enough to mention.
 
-1. Documentation as Code
-    1. As you break down the barriers of releasing services, you will run into the problem of documentation
-    1. If you write your documentation alongside your service, than you can deploy both in parallel
-    1. Each change along with documentation updates go together in one commit, preferably as a pull request
-    1. There will be no more time to make wiki or PDF changes before a change is rolled out
-1. Automated Changelog Updates
-    1. Keeping track of every change will be very hard if they are released and deployed frequently
-    1. Instead opt for an automated approach to changelog generation
-    1. Specifications like [keep a changelog](https://keepachangelog.com/) are a good place to start
-    1. [hashver-python](https://github.com/miniscruff/hashversion-python) packages changelog management together
-    1. Changelogs should be packaged or referenced in your documentation as well
-1. Single Environment Deploys
-    1. As you deploy faster and faster you may consider going from master straight to production
-    1. With a strong CI/CD tool chain hash versioning keeps up with the speed of releases
-    1. If one environment feels too risky consider two with a 24 hour rollover window
-1. Feature management
-    1. As you deploy to a single environment, or quickly through two, managing beta or early access features changes
-    1. Instead of holding new features out until they are "perfect" consider alternatives
-    1. Such as, just releasing it and not announcing it, depending on your circumstance this may work
-    1. Local feature flags that can be enabled for some users but not all
-    1. A feature flag service to modify and toggle flags based on many factors
+### Documentation as Code
+1. As you break down the barriers of releasing services, you will run into the problem of documentation
+1. If you write your documentation alongside your service, than you can deploy both in parallel
+1. Each change along with documentation updates go together in one commit, preferably as a pull request
+1. There will be no more time to make wiki or PDF changes before a change is rolled out
+
+### Automated Changelog Updates
+1. Keeping track of every change will be very hard if they are released and deployed frequently
+1. Instead opt for an automated approach to changelog generation
+1. Specifications like [keep a changelog](https://keepachangelog.com/) are a good place to start
+1. [hashver-python](https://github.com/miniscruff/hashversion-python) packages changelog management together
+1. Changelogs should be packaged or referenced in your documentation as well
+
+### Single Environment Deploys
+1. As you deploy faster and faster you may consider going from master straight to production
+1. With a strong CI/CD tool chain hash versioning keeps up with the speed of releases
+1. If one environment feels too risky consider two with a 24 hour rollover window
+
+### Feature Management
+1. As you deploy to a single environment, or quickly through two, managing beta or early access features changes
+1. Instead of holding new features out until they are "perfect" consider alternatives
+1. Such as, just releasing it and not announcing it, depending on your circumstance this may work
+1. Local feature flags that can be enabled for some users but not all
+1. A feature flag service to modify and toggle flags based on many factors
 
 ## Hash Version Versioning
 Hash version is in the early stages, all feedback is appreciated.
