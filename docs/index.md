@@ -3,9 +3,9 @@ Versioning is everywhere in tech and allows us to reference a point in time
 for our software, hardware or anything in between.
 
 Most use a simple dot separated list such as Python, JavaScript or NodeJS.
-Typically referring to [SemVer](https://semver.org) for how the numbers are incremented.
+Typically referring to [Semantic Versioning](https://semver.org) for how the numbers are incremented.
 Others use a single number like Firefox, Chrome or Safari.
-The other common format is to just use the date, called [CalVer](https://calver.org),
+The other common format is to just use the date, called [Calendar Versioning](https://calver.org),
 such as Ubuntu or Unity.
 
 Some like to add a little extra with a cool name like Android or Ubuntu.
@@ -26,21 +26,6 @@ HashVer format consists of 3 or 4 values separated by a period.
 1. Zero padded month  (`printf("%m")`)
 1. [Optional] Zero padded day (`printf(""%d)`)
 1. 6-10 characters of the current source controls commits hash
-    1. This can be done using rev-parse and cut
-    1. `git rev-parse HEAD | cut -c-8`
-
-A simple bash script to print a version is:
-```bash
-printf '%(%Y-%m-)T'; git rev-parse HEAD | cut -c-8
-```
-
-Note the 8 at the end is adjustable.
-To include the day use `(%Y-%m-%d-)` inside the parenthesis.
-
-> Warning:
-    This does make the assumption you are using a source control that uses
-    a hash to refer to the current commit or revision.
-    Git for example does, Subversion does not.
 
 Examples:
 
@@ -83,7 +68,7 @@ There are many more reasons to not use hash versioning than there are reasons to
 it.
 To name a few:
 
-1. Does backwards compatability matter to you?
+1. Are backwards incompatable changes optional?
 1. Does the user need to install or update manually?
     * Mobile apps probably will not work
     * PWA's will probably work
@@ -99,10 +84,39 @@ To name a few:
 
 Ok, maybe more than a few but you get the point.
 
+## Generating Hash Versions
+As part of automated CI/CD solutions you will want to generate your hash version.
+
+1. [hashver-python](https://github.com/miniscruff/hashversion-python) can generate versions and handles more.
+1. Bash: `printf '%(%Y-%m-)T'; git rev-parse HEAD | cut -c-8`
+
+More to come...
+
+## Related Practices
+As part of your deployment pipeline when using hash versioning, here are some related practices.
+These are not directly part of hash version but are related enough to mention.
+
+1. Documentation as Code
+    1. As you break down the barriers of releasing services, you will run into the problem of documentation
+    1. If you write your documentation alongside your service, than you can deploy both in parallel
+    1. Each change along with documentation updates go together in one commit, preferably as a pull request
+    1. There will be no more time to make wiki or PDF changes before a change is rolled out
+1. Automated Changelog Updates
+    1. Keeping track of every change will be very hard if they are released and deployed frequently
+    1. Instead opt for an automated approach to changelog generation
+    1. Specifications like [keep a changelog](https://keepachangelog.com/) are a good place to start
+    1. [hashver-python](https://github.com/miniscruff/hashversion-python) packages changelog management together
+    1. Changelogs should be packaged or referenced in your documentation as well
+1. Single Environment Deploys
+    1. As you deploy faster and faster you may consider going from master straight to production
+    1. With a strong CI/CD tool chain hash versioning keeps up with the speed of releases
+    1. If one environment feels too risky consider two with a 24 hour rollover window
+1. Feature management
+    1. As you deploy to a single environment, or quickly through two, managing beta or early access features changes
+    1. Instead of holding new features out until they are "perfect" consider alternatives
+    1. Such as, just releasing it and not announcing it, depending on your circumstance this may work
+    1. Local feature flags that can be enabled for some users but not all
+    1. A feature flag service to modify and toggle flags based on many factors
+
 ## Hash Version Versioning
-Hash version specification does not fit the use case for hash version and as such
-it instead uses semantic versioning.
-
-Hash version is also in the early stages and as such is tagged with draft.
-
-Current version is 0.1.0-draft
+Hash version is in the early stages, all feedback is appreciated.
