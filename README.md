@@ -1,7 +1,7 @@
 # Hash Versioning
 Versioning scheme suited for constant small releases
 
-Source code that generates [hash versionin](https://miniscruff.github.io/hashver/)
+Source code that generates [hash ver](https://miniscruff.github.io/hashver/)
 
 ## Getting Started
 Hash versioning documentation is handled by jekyll and github pages.
