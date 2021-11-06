@@ -24,13 +24,28 @@ HashVer format consists of 3 or 4 values separated by a period.
 
 1. Full year (`printf("%Y")`)
 1. Zero padded month  (`printf("%m")`)
-1. [Optional] Zero padded day (`printf(""%d)`)
-1. 6-10 characters of the current source controls commits hash
+1. [Optional] Zero padded day (`printf("%d")`)
+1. 10+ characters of the current source controls commits hash
 
 Examples:
 
-1. 2020.01.67092445a
-1. 2019.07.21.3731a8be0f
+1. 2020.01.67092445a1abc
+1. 2019.07.21.3731a8be0f1a8
+
+> Note
+    If you are using existing tools that rely on semver formatting, you can instead
+    use a `+` between the day and hash.
+    This specifies the hash as an optional metadata to semver checks.
+
+## Ordering
+Because commit hashes are random the ordering is not guaranteed when versions
+collide on the same day or month if not including days.
+You should include enough granularity so you do not release more often than
+the accuracy allows.
+If you release many times a day, including more parts of the time like hours
+can work.
+Or you can include some other metadata like CI build index to make the builds
+sortable.
 
 ## Advantages
 Each version includes the date and hash commit, this gives us a few advantages
@@ -82,15 +97,13 @@ To name a few:
 1. Do you have to manually test?
 1. Do you need explicit approval from someone that takes a long time?
 
-Ok, maybe more than a few but you get the point.
-
 ## Generating Hash Versions
 As part of automated CI/CD solutions you will want to generate your hash version.
 
 1. [hashver-python](https://github.com/miniscruff/hashversion-python) can generate versions and handles more.
-1. Bash: `printf '%(%Y-%m-)T'; git rev-parse HEAD | cut -c-8`
-
-More to come...
+1. Bash: `printf '%(%Y-%m-)T'; git rev-parse --short=12 HEAD`
+1. Bash with day: `printf '%(%Y-%m-%d-)T'; git rev-parse --short=12 HEAD`
+1. Bash with semver format: `printf '%(%Y-%m-%d+)T'; git rev-parse --short=12 HEAD`
 
 ## Related Practices
 As part of your deployment pipeline when using hash versioning, here are some related practices.
@@ -107,6 +120,7 @@ These are not directly part of hash version but are related enough to mention.
 1. Instead opt for an automated approach to changelog generation
 1. Specifications like [keep a changelog](https://keepachangelog.com/) are a good place to start
 1. [hashver-python](https://github.com/miniscruff/hashversion-python) packages changelog management together
+1. [changie](https://github.com/miniscruff/changie) also supports hash versioning
 1. Changelogs should be packaged or referenced in your documentation as well
 
 ### Single Environment Deploys
